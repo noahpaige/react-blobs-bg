@@ -36,17 +36,17 @@ This document outlines the comprehensive plan to extract the `AnimatedBackground
 ### 1. Package Naming & Scope
 
 ```
-@noahpaige/react-animated-background
+@noahpaige/react-blobs-bg
 ```
 
 - **Scope**: `@noahpaige` (personal scope)
-- **Name**: `react-animated-background` (descriptive and searchable)
+- **Name**: `react-blobs-bg` (descriptive and searchable)
 - **Registry**: npm (public access)
 
 ### 2. Directory Structure
 
 ```
-react-animated-background/
+react-blobs-bg/
 ├── src/
 │   ├── components/
 │   │   └── AnimatedBackground/
@@ -99,8 +99,8 @@ react-animated-background/
 
 ```bash
 # Create package directory
-mkdir react-animated-background
-cd react-animated-background
+mkdir react-blobs-bg
+cd react-blobs-bg
 npm init -y
 
 # Initialize Git repository
@@ -334,7 +334,7 @@ export default [
 
 ```json
 {
-  "name": "@noahpaige/react-animated-background",
+  "name": "@noahpaige/react-blobs-bg",
   "version": "1.0.0",
   "description": "High-performance, prop-driven animated blob background component with hardware-adaptive quality settings and canvas rendering",
   "main": "dist/index.js",
@@ -382,12 +382,12 @@ export default [
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noahpaige/react-animated-background.git"
+    "url": "git+https://github.com/noahpaige/react-blobs-bg.git"
   },
   "bugs": {
-    "url": "https://github.com/noahpaige/react-animated-background/issues"
+    "url": "https://github.com/noahpaige/react-blobs-bg/issues"
   },
-  "homepage": "https://github.com/noahpaige/react-animated-background#readme"
+  "homepage": "https://github.com/noahpaige/react-blobs-bg#readme"
 }
 ```
 
@@ -504,7 +504,7 @@ describe('AnimatedBackground', () => {
 **Basic Static Background:**
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-animated-background";
+import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
 
 function App() {
   return (
@@ -522,7 +522,7 @@ function App() {
 **With GSAP Animation:**
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-animated-background";
+import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 
@@ -563,7 +563,7 @@ function App() {
 **With Framer Motion:**
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-animated-background";
+import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
 import { useMotionValue, useTransform } from "framer-motion";
 
 function App() {
@@ -587,7 +587,7 @@ function App() {
 **Per-Blob Control:**
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-animated-background";
+import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
 
 function App() {
   return (
