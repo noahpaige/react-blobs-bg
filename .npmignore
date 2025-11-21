@@ -1,0 +1,50 @@
+# Source files
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+tests/
+test/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+coverage/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Examples
+examples/
+
+# Config files
+tsconfig.json
+rollup.config.js
+vitest.config.ts
+.eslintrc.*
+.prettierrc*
+.storybook/
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Misc
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
