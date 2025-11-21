@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnimatedBackground Test</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+        overflow: hidden;
+      }
+      .content {
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      p {
+        font-size: 1.2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      // Note: In a real test, you would import from the built package:
+      // import { AnimatedBackground } from '@noahpaige/react-blobs-bg';
+      // For this HTML test, you would need to bundle it first or use a bundler
+
+      function TestApp() {
+        const [rotation, setRotation] = useState(0);
+        const [yPosition, setYPosition] = useState(0.5);
+
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setRotation((r) => (r + 1) % 360);
+            setYPosition((y) => {
+              const newY = y + 0.01;
+              return newY > 1 ? 0 : newY;
+            });
+          }, 16);
+          return () => clearInterval(interval);
+        }, []);
+
+        return (
+          <div>
+            {/* 
+                        In a real setup, you would use:
+                        <AnimatedBackground
+                            colorPair={[
+                                { h: 200, s: 70, l: 50 },
+                                { h: 300, s: 70, l: 50 },
+                            ]}
+                            blobRotations={rotation}
+                            blobY={yPosition}
+                        />
+                    */}
+            <div className="content">
+              <h1>AnimatedBackground Test</h1>
+              <p>Rotation: {rotation.toFixed(0)}°</p>
+              <p>Y Position: {yPosition.toFixed(2)}</p>
+              <p
+                style={{ marginTop: "2rem", fontSize: "0.9rem", opacity: 0.8 }}
+              >
+                To test the actual component, use npm link or import from dist/
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<TestApp />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
