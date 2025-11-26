@@ -7,12 +7,11 @@ import React, {
 } from "react";
 import { AnimatedBackgroundProps } from "./AnimatedBackground.types";
 import { BlobState, InternalBlobData, DirtyRegion } from "../../types";
+import { Path2DPool, GradientCache, ColorCache } from "../../utils/caching";
 import {
-  Path2DPool,
-  GradientCache,
-  ColorCache,
-} from "../../utils/caching";
-import { calculateBlobBounds, mergeDirtyRegions } from "../../utils/dirty-regions";
+  calculateBlobBounds,
+  mergeDirtyRegions,
+} from "../../utils/dirty-regions";
 import { hslToString, getGradientColors } from "../../utils/color-helpers";
 import { getPerBlobValue, generateBlobs } from "../../utils/canvas-helpers";
 import { detectPerformanceTier } from "../../utils/performance-detection";
@@ -74,7 +73,8 @@ const AnimatedBackground = React.memo<AnimatedBackgroundProps>(
     const [loading, setLoading] = useState(true);
 
     // Use prop override if provided, otherwise use detected tier
-    const performanceTier = performanceTierProp || detectedPerformanceTier || "medium";
+    const performanceTier =
+      performanceTierProp || detectedPerformanceTier || "medium";
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const blobs = useRef<InternalBlobData[]>([]);
@@ -247,8 +247,11 @@ const AnimatedBackground = React.memo<AnimatedBackgroundProps>(
       if (qualitySettingsProp) {
         return {
           blobCount: qualitySettingsProp.blobCount ?? numBlobs,
-          frameRate: qualitySettingsProp.frameRate ?? ANIMATION_CONFIG.frameRates.medium,
-          blurAmount: qualitySettingsProp.blurAmount ?? ANIMATION_CONFIG.blurAmounts.medium,
+          frameRate:
+            qualitySettingsProp.frameRate ?? ANIMATION_CONFIG.frameRates.medium,
+          blurAmount:
+            qualitySettingsProp.blurAmount ??
+            ANIMATION_CONFIG.blurAmounts.medium,
         };
       }
 
@@ -770,4 +773,3 @@ const AnimatedBackground = React.memo<AnimatedBackgroundProps>(
 AnimatedBackground.displayName = "AnimatedBackground";
 
 export default AnimatedBackground;
-
