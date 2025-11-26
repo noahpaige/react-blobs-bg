@@ -1,4 +1,8 @@
-export { AnimatedBackground } from "./components/AnimatedBackground";
+export {
+  AnimatedBackground,
+  // New preferred name for the main component
+  AnimatedBackground as BlobsBg,
+} from "./components/AnimatedBackground";
 export type { AnimatedBackgroundProps } from "./components/AnimatedBackground/AnimatedBackground.types";
 export type { HSLColor } from "./types";
 export type { PerformanceTier, PerformanceSettings } from "./types";
