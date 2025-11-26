@@ -11,6 +11,10 @@ High-performance, prop-driven animated blob background component with hardware-a
 - 📦 **Zero dependencies** - Only React as a peer dependency
 - 🎭 **Flexible** - Per-blob or shared positioning, rotation, and color control
 
+## Live Demo
+
+Check out a live example on CodePen: [https://codepen.io/noahpaige/pen/EaKodox](https://codepen.io/noahpaige/pen/EaKodox)
+
 ## Installation
 
 ```bash
