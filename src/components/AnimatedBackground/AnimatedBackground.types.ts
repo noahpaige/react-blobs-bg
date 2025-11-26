@@ -3,7 +3,7 @@ import { HSLColor, PerformanceTier } from "../../types";
 /**
  * Props for AnimatedBackground component
  */
-export interface AnimatedBackgroundProps {
+export interface BlobsBgProps {
   /** Single color pair for blob gradients */
   colorPair: [HSLColor, HSLColor];
 
@@ -38,4 +38,3 @@ export interface AnimatedBackgroundProps {
   /** Error callback */
   onError?: (error: Error) => void;
 }
-

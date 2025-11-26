@@ -38,11 +38,11 @@ pnpm add @noahpaige/react-blobs-bg
 ### Static Background
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
+import { BlobsBg } from "@noahpaige/react-blobs-bg";
 
 function App() {
   return (
-    <AnimatedBackground
+    <BlobsBg
       colorPair={[
         { h: 200, s: 70, l: 50 },
         { h: 300, s: 70, l: 50 },
@@ -56,7 +56,7 @@ function App() {
 ### With External Animation (GSAP)
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
+import { BlobsBg } from "@noahpaige/react-blobs-bg";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 
@@ -82,7 +82,7 @@ function App() {
   }, []);
 
   return (
-    <AnimatedBackground
+    <BlobsBg
       colorPair={[
         { h: 200, s: 70, l: 50 },
         { h: 300, s: 70, l: 50 },
@@ -97,7 +97,7 @@ function App() {
 ### With Framer Motion
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
+import { BlobsBg } from "@noahpaige/react-blobs-bg";
 import { useMotionValue, useTransform } from "framer-motion";
 
 function App() {
@@ -106,7 +106,7 @@ function App() {
   const yPosition = useTransform(scrollY, [0, 1000], [0.5, 1]);
 
   return (
-    <AnimatedBackground
+    <BlobsBg
       colorPair={[
         { h: 200, s: 70, l: 50 },
         { h: 300, s: 70, l: 50 },
@@ -121,11 +121,11 @@ function App() {
 ### Per-Blob Control
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
+import { BlobsBg } from "@noahpaige/react-blobs-bg";
 
 function App() {
   return (
-    <AnimatedBackground
+    <BlobsBg
       colorPair={[
         { h: 200, s: 70, l: 50 },
         { h: 300, s: 70, l: 50 },
@@ -142,11 +142,11 @@ function App() {
 ### Performance Override
 
 ```tsx
-import { AnimatedBackground } from "@noahpaige/react-blobs-bg";
+import { BlobsBg } from "@noahpaige/react-blobs-bg";
 
 function App() {
   return (
-    <AnimatedBackground
+    <BlobsBg
       colorPair={[
         { h: 200, s: 70, l: 50 },
         { h: 300, s: 70, l: 50 },
@@ -164,7 +164,7 @@ function App() {
 
 ## API Reference
 
-### AnimatedBackground Props
+### BlobsBg Props
 
 | Prop              | Type                          | Default      | Description                                                  |
 | ----------------- | ----------------------------- | ------------ | ------------------------------------------------------------ |
@@ -232,8 +232,8 @@ Full TypeScript support is included. All types are exported from the main packag
 
 ```typescript
 import {
-  AnimatedBackground,
-  AnimatedBackgroundProps,
+  BlobsBg,
+  BlobsBgProps,
   HSLColor,
   PerformanceTier,
   detectPerformanceTier,

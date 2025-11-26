@@ -5,7 +5,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
-import { AnimatedBackgroundProps } from "./AnimatedBackground.types";
+import { BlobsBgProps } from "./AnimatedBackground.types";
 import { BlobState, InternalBlobData, DirtyRegion } from "../../types";
 import { Path2DPool, GradientCache, ColorCache } from "../../utils/caching";
 import {
@@ -52,7 +52,7 @@ import { ANIMATION_CONFIG, DEFAULT_PROPS } from "../../constants";
  * />
  * ```
  */
-const AnimatedBackground = React.memo<AnimatedBackgroundProps>(
+const AnimatedBackground = React.memo<BlobsBgProps>(
   ({
     colorPair,
     numBlobs = DEFAULT_PROPS.numBlobs,
