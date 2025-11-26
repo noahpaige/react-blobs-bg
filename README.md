@@ -2,18 +2,23 @@
 
 High-performance, prop-driven animated blob background component with hardware-adaptive quality settings and canvas rendering.
 
+Check out a live example on CodePen: [https://codepen.io/noahpaige/pen/EaKodox](https://codepen.io/noahpaige/pen/EaKodox)
+
 ## Features
 
-- 🎨 **Prop-driven animation** - Fully controlled via props (no internal animation loops)
-- ⚡ **Hardware-adaptive** - Automatically adjusts quality based on device performance
-- 🎯 **Performance optimized** - Dirty region tracking, Path2D/gradient caching, frame rate limiting
-- 🔧 **Type-safe** - Comprehensive TypeScript types and validation
-- 📦 **Zero dependencies** - Only React as a peer dependency
-- 🎭 **Flexible** - Per-blob or shared positioning, rotation, and color control
-
-## Live Demo
-
-Check out a live example on CodePen: [https://codepen.io/noahpaige/pen/EaKodox](https://codepen.io/noahpaige/pen/EaKodox)
+- 🎯 Zero-dependency React component: Drop-in <BlobsBg /> React component with no runtime dependencies beyond React itself.
+- 🌈 Beautiful gradient blob backgrounds: Renders organic blob shapes with smooth HSL-based gradients, controlled via a simple colorPair prop.
+- 🎛️ Prop-driven animation model: The component itself is pure and stable; all motion comes from changing props (blobX, blobY, blobRotations) so animation can be driven by your own state, timelines, or scroll logic.
+- 🎯 Per-blob control or one-line config: blobX, blobY, and blobRotations can be a single value (applied to all blobs) or arrays for fine‑grained, per-blob positioning and motion.
+- 🚀 Adaptive performance based on hardware: Auto-detects hardware capabilities (GPU, RAM, CPU cores) and picks an appropriate performance tier (low / medium / high) so it feels smooth on low-end laptops and high-refresh displays alike.
+- ⚙️ Tunable quality settings: Optional qualitySettings override lets you explicitly control blob count, frame rate, and blur strength when you need precise tradeoffs.
+- 🖼️ Efficient offscreen rendering: Uses an offscreen canvas and draws a single blurred frame onto the main canvas, reducing work per frame and improving responsiveness.
+- 🧮 Dirty-region rendering optimization: Tracks which parts of the offscreen canvas have actually changed between frames and only clears/redraws those areas, saving GPU/CPU time.
+- 🧠 Smart caching (Path2D, gradients, colors): Pools Path2D objects and caches gradients and HSL strings to minimize allocations and expensive canvas operations.
+- 📱 Responsive full-screen layout: Automatically resizes to the viewport, covering the entire background (100vw × 100vh) while staying non-interactive (pointerEvents: "none", negative z-index).
+- 🛡️ Runtime validation and safety: Validates colorPair, array lengths, and performance-related props, logging clear errors/warnings and falling back to a safe static background if misconfigured.
+- 📐 TypeScript-friendly API: Fully typed props (BlobsBgProps, HSLColor, performance types) with sensible defaults (DEFAULT_PROPS) for an easy, discoverable developer experience.
+- 🔍 Performance diagnostics in development: Optionally logs performance tier, quality settings, FPS estimates, dirty-region efficiency, and render timings to the console during development.
 
 ## Installation
 
@@ -38,27 +43,29 @@ pnpm add @noahpaige/react-blobs-bg
 ### Static Background
 
 ```tsx
-import { BlobsBg } from "@noahpaige/react-blobs-bg";
+import { BlobsBg, HSLColor } from "@noahpaige/react-blobs-bg";
+
+const colorPair: [HSLColor, HSLColor] = [
+  { h: 200, s: 70, l: 50 },
+  { h: 300, s: 70, l: 50 },
+];
 
 function App() {
-  return (
-    <BlobsBg
-      colorPair={[
-        { h: 200, s: 70, l: 50 },
-        { h: 300, s: 70, l: 50 },
-      ]}
-      numBlobs={12}
-    />
-  );
+  return <BlobsBg colorPair={colorPair} numBlobs={12} />;
 }
 ```
 
 ### With External Animation (GSAP)
 
 ```tsx
-import { BlobsBg } from "@noahpaige/react-blobs-bg";
+import { BlobsBg, HSLColor } from "@noahpaige/react-blobs-bg";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
+
+const colorPair: [HSLColor, HSLColor] = [
+  { h: 200, s: 70, l: 50 },
+  { h: 300, s: 70, l: 50 },
+];
 
 function App() {
   const [rotation, setRotation] = useState(0);
@@ -82,14 +89,7 @@ function App() {
   }, []);
 
   return (
-    <BlobsBg
-      colorPair={[
-        { h: 200, s: 70, l: 50 },
-        { h: 300, s: 70, l: 50 },
-      ]}
-      blobRotations={rotation}
-      blobY={yPosition}
-    />
+    <BlobsBg colorPair={colorPair} blobRotations={rotation} blobY={yPosition} />
   );
 }
 ```
@@ -97,8 +97,13 @@ function App() {
 ### With Framer Motion
 
 ```tsx
-import { BlobsBg } from "@noahpaige/react-blobs-bg";
+import { BlobsBg, HSLColor } from "@noahpaige/react-blobs-bg";
 import { useMotionValue, useTransform } from "framer-motion";
+
+const colorPair: [HSLColor, HSLColor] = [
+  { h: 200, s: 70, l: 50 },
+  { h: 300, s: 70, l: 50 },
+];
 
 function App() {
   const scrollY = useMotionValue(0);
@@ -107,10 +112,7 @@ function App() {
 
   return (
     <BlobsBg
-      colorPair={[
-        { h: 200, s: 70, l: 50 },
-        { h: 300, s: 70, l: 50 },
-      ]}
+      colorPair={colorPair}
       blobRotations={rotation.get()}
       blobY={yPosition.get()}
     />
@@ -121,15 +123,17 @@ function App() {
 ### Per-Blob Control
 
 ```tsx
-import { BlobsBg } from "@noahpaige/react-blobs-bg";
+import { BlobsBg, HSLColor } from "@noahpaige/react-blobs-bg";
+
+const colorPair: [HSLColor, HSLColor] = [
+  { h: 200, s: 70, l: 50 },
+  { h: 300, s: 70, l: 50 },
+];
 
 function App() {
   return (
     <BlobsBg
-      colorPair={[
-        { h: 200, s: 70, l: 50 },
-        { h: 300, s: 70, l: 50 },
-      ]}
+      colorPair={colorPair}
       numBlobs={6}
       blobX={[0.2, 0.4, 0.6, 0.8, 0.3, 0.7]}
       blobY={[0.3, 0.5, 0.7, 0.4, 0.6, 0.8]}
@@ -142,15 +146,17 @@ function App() {
 ### Performance Override
 
 ```tsx
-import { BlobsBg } from "@noahpaige/react-blobs-bg";
+import { BlobsBg, HSLColor } from "@noahpaige/react-blobs-bg";
+
+const colorPair: [HSLColor, HSLColor] = [
+  { h: 200, s: 70, l: 50 },
+  { h: 300, s: 70, l: 50 },
+];
 
 function App() {
   return (
     <BlobsBg
-      colorPair={[
-        { h: 200, s: 70, l: 50 },
-        { h: 300, s: 70, l: 50 },
-      ]}
+      colorPair={colorPair}
       performanceTier="high"
       qualitySettings={{
         blobCount: 20,
