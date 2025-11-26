@@ -1,6 +1,6 @@
 {
   "name": "@noahpaige/react-blobs-bg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "High-performance, prop-driven animated blob background component with hardware-adaptive quality settings and canvas rendering",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
